@@ -1,0 +1,20 @@
+{
+  "name": "nodejs-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eval": "^0.1.6",
+    "playwright-aws-lambda": "v0.7.0",
+    "playwright-core": "^1"
+  },
+  "devDependencies": {
+    "playwright": "^1.20.0"
+  }
+}
