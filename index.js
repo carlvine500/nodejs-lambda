@@ -1,24 +1,38 @@
-const playwright = require('playwright-aws-lambda');
 // const {handler} = require("./app");
+// // 转为base64
+// var strToBase64 = new Buffer('aaabbbccc').toString('base64');
+// // base64反解析为字符串
+// var base64ToStr = new Buffer(str , 'base64').toString();
+var crypto = require('crypto');
+const fs = require("fs");
+const path = require("path");
 
+function md5(password) {
+    var md5 = crypto.createHash('md5');
+    return md5.update(password).digest('hex');
+}
 exports.handler = async (event, context) => {
-    let browser = null;
-
     try {
-        browser = await playwright.launchChromium();
-        const context = await browser.newContext();
-
-        const page = await context.newPage();
-        await page.goto(event.url || 'https://baidu.com');
-        // /tmp以外其它目录是只读的,如果有需要可以挂载到efs
-        await page.screenshot({path:`/tmp/eg1.png`})
-        console.log('Page title: ', await page.title());
+        console.log('make link')
+        if(!fs.existsSync('/tmp/node_modules')){
+            fs.symlinkSync(path.resolve('./node_modules'),'/tmp/node_modules','dir');
+        }
+        // const params = JSON.parse(event.body);
+        let script = Buffer.from(event.scriptBase64,'base64').toString('utf-8');
+        console.log('receive script'+script);
+        let filePath = '/tmp/' + event.scriptName ;
+        fs.writeFileSync(filePath,script);
+        console.log('write file success')
+        let test = require(filePath);
+        await test.main()
+        // fs.writeFile(filePath, script, (err) => {
+        //     console.log('write file success')
+        //     var dynModule = require(filePath);
+        //     dynModule.main();
+        // });
     } catch (error) {
         throw error;
     } finally {
-        if (browser) {
-            await browser.close();
-        }
     }
     const response = {
         statusCode: 200,
