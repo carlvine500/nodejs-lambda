@@ -1,4 +1,4 @@
-## aws lambda nodejs simple test
+## aws lambda nodejs playwright simple test
 1. npm install
 2. cp -r nodejs-lambda function;
 3. cd function;rm -rf .idea; zip -r function.zip ./ (可能包大于50M不让上传aws,删除一些不相关的);
