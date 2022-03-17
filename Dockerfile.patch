@@ -1,0 +1,3 @@
+FROM 304321233127.dkr.ecr.cn-northwest-1.amazonaws.com.cn/frontend/nodejs-lambda:v1
+RUN mkdir -p /home/Service && ln -s /tmp /home/Service/temp
+COPY index.js /function

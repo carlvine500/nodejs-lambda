@@ -6,7 +6,7 @@ exports.main = async () => {
     var page = await browser.newPage();
     await  page.goto("http://vpn-ningxia.successchannel.tech?tingfeng");
     console.log('Page title: ', await page.title());
-    await page.screenshot({path:'/tmp/eg.png'})
+    await page.screenshot({path:'/home/Service/temp/eg.png'})
     await browser.close();
 };
 `;

@@ -1,0 +1,10 @@
+all: build
+
+build:
+	docker build -f Dockerfile.patch --pull -t 304321233127.dkr.ecr.cn-northwest-1.amazonaws.com.cn/frontend/nodejs-lambda:v1-patch .
+push:
+	docker push -f Dockerfile.patch 304321233127.dkr.ecr.cn-northwest-1.amazonaws.com.cn/frontend/nodejs-lambda:v1-patch
+
+
+
+.PHONY: all build push
