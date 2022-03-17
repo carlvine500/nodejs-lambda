@@ -13,6 +13,8 @@ function main2(){
         // 测试动态的依赖文件
         var test = require('/tmp/test1.js');
         test.main()
+        var module = require.resolve('/tmp/test1.js');
+        delete require.cache[module];
     });
 }
 

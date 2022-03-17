@@ -14,7 +14,7 @@ var strToBase64 = Buffer.from(script,'utf-8').toString('base64');
 console.log(strToBase64);
 var base64ToStr = Buffer.from(strToBase64,'base64').toString('utf-8');
 var data={}
-data.scriptName  = "test.js";
+data.scriptName  = "test1.js";
 data.scriptBase64 = strToBase64;
 console.log(JSON.stringify(data));
 
