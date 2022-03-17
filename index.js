@@ -25,6 +25,8 @@ exports.handler = async (event, context) => {
         console.log('write file success')
         let test = require(filePath);
         await test.main()
+        var module = require.resolve(filePath);
+        delete require.cache[module];
         // fs.writeFile(filePath, script, (err) => {
         //     console.log('write file success')
         //     var dynModule = require(filePath);
